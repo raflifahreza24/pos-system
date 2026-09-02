@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-primary: var(--c-primary);
+  --color-primary-hover: var(--c-primary-hover);
+  --color-primary-light: var(--c-primary-light);
+
+  --color-canvas: var(--c-canvas);
+  --color-surface: var(--c-surface);
+  --color-topbar: var(--c-topbar);
+
+  --color-ink: var(--c-ink);
+  --color-ink-muted: var(--c-ink-muted);
+  --color-line: var(--c-line);
+
+  --color-sidebar: var(--c-sidebar);
+  --color-sidebar-hover: var(--c-sidebar-hover);
+  --color-sidebar-active: var(--c-sidebar-active);
+  --color-sidebar-ink: var(--c-sidebar-ink);
+  --color-sidebar-ink-active: var(--c-sidebar-ink-active);
+  --color-sidebar-line: var(--c-sidebar-line);
+
+  --color-success-light: var(--c-success-light);
+  --color-success-strong: var(--c-success-strong);
+  --color-warning-light: var(--c-warning-light);
+  --color-warning-strong: var(--c-warning-strong);
+  --color-danger-light: var(--c-danger-light);
+  --color-danger-strong: var(--c-danger-strong);
+
+  --shadow-xs: 0 1px 2px 0 rgb(17 24 39 / 0.04);
+}
+
+:root {
+  color-scheme: light;
+
+  /* Default Mode — branded sidebar, #224248 as primary identity */
+  --c-primary: #224248;
+  --c-primary-hover: #1b353a;
+  --c-primary-light: #e8efef;
+
+  --c-canvas: #f5f7f7;
+  --c-surface: #ffffff;
+  --c-topbar: #ffffff;
+
+  --c-ink: #1f2937;
+  --c-ink-muted: #6b7280;
+  --c-line: #e5e7eb;
+
+  --c-sidebar: #224248;
+  --c-sidebar-hover: #2c4f56;
+  --c-sidebar-active: #1b353a;
+  --c-sidebar-ink: #b9cbcb;
+  --c-sidebar-ink-active: #ffffff;
+  --c-sidebar-line: rgb(255 255 255 / 0.1);
+
+  --c-success-light: #dcfce7;
+  --c-success-strong: #15803d;
+  --c-warning-light: #fef3c7;
+  --c-warning-strong: #b45309;
+  --c-danger-light: #fee2e2;
+  --c-danger-strong: #b91c1c;
+}
+
+:root[data-theme='light'] {
+  --c-canvas: #f8fafc;
+  --c-surface: #ffffff;
+  --c-topbar: #ffffff;
+
+  --c-ink: #111827;
+  --c-ink-muted: #6b7280;
+  --c-line: #e5e7eb;
+
+  --c-sidebar: #ffffff;
+  --c-sidebar-hover: #f1f5f5;
+  --c-sidebar-active: #e8efef;
+  --c-sidebar-ink: #6b7280;
+  --c-sidebar-ink-active: #224248;
+  --c-sidebar-line: #e5e7eb;
+}
+
+* {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background-color: var(--c-canvas);
+  color: var(--c-ink);
+}
+
+#root {
+  min-height: 100svh;
+}
+
+::selection {
+  background-color: var(--c-primary-light);
+  color: var(--c-primary);
+}
+
+/* Slim, unobtrusive scrollbars for nav / table overflow areas */
+.overflow-y-auto,
+.overflow-x-auto {
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-line) transparent;
+}
