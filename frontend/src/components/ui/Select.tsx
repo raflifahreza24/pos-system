@@ -11,7 +11,7 @@ export function Select({ wrapperClassName, className, children, ...props }: Sele
     <div className={cn('relative', wrapperClassName)}>
       <select
         className={cn(
-          'w-full appearance-none rounded-xl border border-line bg-surface py-2.5 pl-3.5 pr-9 text-sm text-ink transition-colors duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/15',
+          'w-full cursor-pointer appearance-none rounded-xl border border-line bg-surface py-2.5 pl-3.5 pr-9 text-sm text-ink transition-colors duration-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/15 disabled:cursor-not-allowed disabled:bg-canvas disabled:text-ink-muted',
           className,
         )}
         {...props}

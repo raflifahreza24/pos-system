@@ -1,30 +1,55 @@
 import type { NavItem } from '../../data/navigation'
 import {
+  IconAlertTriangle,
+  IconCategory,
+  IconClock,
   IconCustomers,
   IconDashboard,
   IconEmployees,
   IconInventory,
+  IconMovements,
+  IconOpname,
+  IconPercent,
   IconPos,
   IconProducts,
-  IconPurchasing,
+  IconPurchaseOrder,
+  IconReceiving,
   IconReports,
   IconReturn,
   IconSettings,
+  IconShieldCheck,
+  IconStorefront,
   IconTransactions,
+  IconTransfer,
+  IconTruck,
 } from '../ui/icons'
 import { cn } from '../../utils/formatters'
 
-const iconMap = {
+// Exported so any other feature that needs the same nav-icon-key ->
+// icon-component mapping (e.g. the Add Role permission module cards) can
+// reuse it instead of redeclaring its own copy.
+export const navIconMap = {
   dashboard: IconDashboard,
   pos: IconPos,
   transactions: IconTransactions,
   returns: IconReturn,
   customers: IconCustomers,
   products: IconProducts,
+  categories: IconCategory,
+  priceDiscounts: IconPercent,
   inventory: IconInventory,
-  purchasing: IconPurchasing,
-  employees: IconEmployees,
+  stockMovements: IconMovements,
+  stockTransfer: IconTransfer,
+  stockOpname: IconOpname,
+  lowStock: IconAlertTriangle,
+  suppliers: IconTruck,
+  purchaseOrders: IconPurchaseOrder,
+  goodsReceiving: IconReceiving,
+  usersEmployees: IconEmployees,
+  rolesPermissions: IconShieldCheck,
+  shifts: IconClock,
   reports: IconReports,
+  branches: IconStorefront,
   settings: IconSettings,
 } as const
 
@@ -36,7 +61,7 @@ interface SidebarItemProps {
 }
 
 export function SidebarItem({ item, active, collapsed, onNavigate }: SidebarItemProps) {
-  const Icon = iconMap[item.icon]
+  const Icon = navIconMap[item.icon]
 
   return (
     <a

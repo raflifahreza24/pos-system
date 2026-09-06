@@ -115,3 +115,15 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--c-line) transparent;
 }
+
+/* Fully hidden scrollbar — the element still scrolls (wheel, touch, drag),
+   it just never shows a scrollbar track. Used on the sidebar nav so a long
+   menu list doesn't clutter the sidebar with a visible scroll track. */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

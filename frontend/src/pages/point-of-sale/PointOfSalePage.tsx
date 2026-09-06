@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { Input } from '../components/ui/Input'
-import { ProductGrid } from '../components/pos/ProductGrid'
-import { CartPanel } from '../components/pos/CartPanel'
-import { IconSearch } from '../components/ui/icons'
-import { useCart } from '../hooks/useCart'
-import { products } from '../data/posData'
+import { PageHeader } from '../../components/ui/PageHeader'
+import { Input } from '../../components/ui/Input'
+import { ProductGrid } from '../../components/pos/ProductGrid'
+import { CartPanel } from '../../components/pos/CartPanel'
+import { IconSearch } from '../../components/ui/icons'
+import { useCart } from '../../hooks/useCart'
+import { products } from '../../data/posData'
 
 export function PointOfSalePage() {
   const [query, setQuery] = useState('')

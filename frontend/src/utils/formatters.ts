@@ -33,3 +33,12 @@ export function formatDateTime(value: string | Date): string {
     minute: '2-digit',
   }).format(date)
 }
+
+// Formats a plain "YYYY-MM-DD" input value (e.g. from a date field) as
+// "DD/MM/YYYY" — used by summary panels that echo back a date the user
+// just picked, without the "Sep" month-name styling of `formatDate`.
+export function formatDateNumeric(isoDate: string): string {
+  if (!isoDate) return '-'
+  const [year, month, day] = isoDate.split('-')
+  return `${day}/${month}/${year}`
+}

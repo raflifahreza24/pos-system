@@ -3,10 +3,11 @@ import { cn } from '../../utils/formatters'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: ReactNode
+  trailingIcon?: ReactNode
   wrapperClassName?: string
 }
 
-export function Input({ icon, wrapperClassName, className, ...props }: InputProps) {
+export function Input({ icon, trailingIcon, wrapperClassName, className, ...props }: InputProps) {
   return (
     <div
       className={cn(
@@ -19,6 +20,7 @@ export function Input({ icon, wrapperClassName, className, ...props }: InputProp
         className={cn('w-full bg-transparent text-sm text-ink placeholder:text-ink-muted focus:outline-none', className)}
         {...props}
       />
+      {trailingIcon}
     </div>
   )
 }

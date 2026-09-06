@@ -37,3 +37,8 @@ function generateReturns(count: number): ReturnRefund[] {
 }
 
 export const returns: ReturnRefund[] = generateReturns(32)
+
+// Options for the "Reason" field on the New Return form.
+export const returnReasons = ['Damaged Product', 'Wrong Item', 'Customer Changed Mind', 'Expired Product', 'Other']
+
+export type ReturnCondition = 'restock' | 'damaged'

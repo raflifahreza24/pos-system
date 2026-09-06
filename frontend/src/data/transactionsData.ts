@@ -28,7 +28,7 @@ const customerPool = [
   'Fajar Nugraha',
 ]
 
-const paymentMethods: PaymentMethod[] = ['Cash', 'Debit Card', 'Credit Card', 'QRIS', 'Bank Transfer']
+export const paymentMethods: PaymentMethod[] = ['Cash', 'Debit Card', 'Credit Card', 'QRIS', 'Bank Transfer']
 
 // Mostly "Paid", occasionally "Pending" / "Refunded" — mirrors a real POS mix.
 const statusCycle: Status[] = ['Paid', 'Paid', 'Paid', 'Paid', 'Pending', 'Paid', 'Refunded', 'Paid']

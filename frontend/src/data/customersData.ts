@@ -1,3 +1,5 @@
+import { activeInactiveStatuses, type Status } from '../components/ui/StatusBadge'
+
 export interface Customer {
   id: string
   name: string
@@ -49,3 +51,9 @@ function generateCustomers(count: number): Customer[] {
 }
 
 export const customers: Customer[] = generateCustomers(24)
+
+// Options for the Add Customer form.
+export const customerTypes = ['Individual', 'Business']
+export const genders = ['Male', 'Female']
+export const customerStatuses: Status[] = activeInactiveStatuses
+

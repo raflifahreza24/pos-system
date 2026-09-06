@@ -265,6 +265,17 @@ export function IconEye(props: IconProps) {
   )
 }
 
+export function IconEyeOff(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M9.9 14.1a3 3 0 0 0 4.2-4.2" />
+      <path d="M7.4 7.7C4.9 9.2 2.5 12 2.5 12s3.5 6.5 9.5 6.5a8.9 8.9 0 0 0 3.1-.55M16.6 6.1A10.6 10.6 0 0 0 12 5.5c-.86 0-1.68.1-2.46.3" />
+      <path d="M18.4 8.3A13.3 13.3 0 0 1 21.5 12s-3.5 6.5-9.5 6.5" />
+      <path d="M4 4l16 16" />
+    </Svg>
+  )
+}
+
 export function IconPlus(props: IconProps) {
   return (
     <Svg {...props}>
@@ -341,6 +352,179 @@ export function IconReturn(props: IconProps) {
     <Svg {...props}>
       <path d="M4.5 12a7.5 7.5 0 1 1 2.5 5.6" />
       <path d="M4.5 17.5v-4h4" />
+    </Svg>
+  )
+}
+
+export function IconCategory(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M11.3 3.5h-4a1.9 1.9 0 0 0-1.35.56l-2.3 2.3a1.9 1.9 0 0 0-.55 1.34v4a1.9 1.9 0 0 0 .55 1.35l8.9 8.9a1.9 1.9 0 0 0 2.7 0l6.6-6.6a1.9 1.9 0 0 0 0-2.7l-8.9-8.9a1.9 1.9 0 0 0-1.35-.55Z" />
+      <circle cx="8.3" cy="8.3" r="1.4" />
+    </Svg>
+  )
+}
+
+export function IconPercent(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M18.5 5.5 5.5 18.5" />
+      <circle cx="7.5" cy="7.5" r="2.3" />
+      <circle cx="16.5" cy="16.5" r="2.3" />
+    </Svg>
+  )
+}
+
+export function IconBox(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M3.5 8 12 3.5 20.5 8 12 12.5 3.5 8Z" />
+      <path d="M3.5 8v8.5L12 21l8.5-4.5V8" />
+      <path d="M12 12.5V21" />
+    </Svg>
+  )
+}
+
+export function IconPackageX(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M3.5 8 12 3.5 20.5 8 12 12.5 3.5 8Z" />
+      <path d="M3.5 8v8.5L12 21l8.5-4.5V8" />
+      <path d="M12 12.5V21" />
+      <path d="m9.7 15.7 4.6 4.6M14.3 15.7l-4.6 4.6" />
+    </Svg>
+  )
+}
+
+export function IconMovements(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M4 8h13.5" />
+      <path d="m14 4.5 3.5 3.5-3.5 3.5" />
+      <path d="M20 16H6.5" />
+      <path d="m10 12.5-3.5 3.5L10 19.5" />
+    </Svg>
+  )
+}
+
+export function IconTransfer(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="2.5" y="8" width="6" height="8" rx="1.5" />
+      <rect x="15.5" y="8" width="6" height="8" rx="1.5" />
+      <path d="M8.5 10h6.5" />
+      <path d="m13 8 2 2-2 2" />
+      <path d="M15.5 14H9" />
+      <path d="m11 12-2 2 2 2" />
+    </Svg>
+  )
+}
+
+export function IconOpname(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="5" y="4.5" width="14" height="17" rx="2" />
+      <rect x="9" y="3" width="6" height="3" rx="1.2" />
+      <path d="m8.3 13.2 2.3 2.3 4.8-4.8" />
+    </Svg>
+  )
+}
+
+export function IconTruck(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="2.5" y="7" width="10.5" height="7.5" rx="1" />
+      <path d="M13 10h3.2l3.3 3v1.5H13V10Z" />
+      <circle cx="6.3" cy="17" r="1.7" />
+      <circle cx="16.7" cy="17" r="1.7" />
+      <path d="M2.5 14.5h1.3M18.2 14.5h1.3" />
+    </Svg>
+  )
+}
+
+export function IconPurchaseOrder(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M6 3h9.5a2 2 0 0 1 2 2v9" />
+      <path d="M6 3a2 2 0 0 0-2 2v14l3-1.8 3 1.8 3-1.8V10" />
+      <path d="M7.5 7.5h6M7.5 11h4" />
+      <circle cx="17.5" cy="17.5" r="3.3" />
+      <path d="m16 17.6 1.1 1.1 2-2.1" />
+    </Svg>
+  )
+}
+
+export function IconReceiving(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M3.5 11 12 6.5 20.5 11 12 15.5 3.5 11Z" />
+      <path d="M3.5 11v6.5L12 22l8.5-4.5V11" />
+      <path d="M12 2v6.5" />
+      <path d="m9 6 3 3 3-3" />
+    </Svg>
+  )
+}
+
+export function IconShieldCheck(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M12 3 4.5 5.8v5.4c0 5 3.2 8.2 7.5 9.6 4.3-1.4 7.5-4.6 7.5-9.6V5.8L12 3Z" />
+      <path d="m8.7 12.2 2.3 2.3 4.3-4.6" />
+    </Svg>
+  )
+}
+
+export function IconStorefront(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M4 4h16l1.5 5a2.3 2.3 0 0 1-4.4 1V8.5M15.1 10a2.3 2.3 0 0 1-4.4 0M10.7 10a2.3 2.3 0 0 1-4.4 1V8.5" />
+      <path d="M5.5 10.8V20h13v-9.2" />
+      <path d="M9.5 20v-5.5h5V20" />
+    </Svg>
+  )
+}
+
+export function IconInfo(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 11v5.2" />
+      <path d="M12 8.3h.01" />
+    </Svg>
+  )
+}
+
+export function IconBarcode(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M4 5v14M8 5v14M11 5v14M15 5v14M18 5v14M21 5v14" />
+    </Svg>
+  )
+}
+
+export function IconUpload(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M12 15.5V4M7.5 8.5 12 4l4.5 4.5" />
+      <path d="M4.5 17.5v1.8a1.7 1.7 0 0 0 1.7 1.7h11.6a1.7 1.7 0 0 0 1.7-1.7v-1.8" />
+    </Svg>
+  )
+}
+
+export function IconExternalLink(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M9.5 5.5H6a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 6 19.5h11a1.5 1.5 0 0 0 1.5-1.5v-3.5" />
+      <path d="M14 4.5h5.5V10M19 5l-8.5 8.5" />
+    </Svg>
+  )
+}
+
+export function IconMapPin(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" />
+      <circle cx="12" cy="9.5" r="2.5" />
     </Svg>
   )
 }

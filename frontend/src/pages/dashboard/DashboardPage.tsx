@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { StatCard } from '../components/ui/StatCard'
-import { ChartCard } from '../components/ui/ChartCard'
-import { Button } from '../components/ui/Button'
-import { SalesOverviewChart } from '../components/dashboard/SalesOverviewChart'
-import { SalesByBranchChart } from '../components/dashboard/SalesByBranchChart'
-import { TopSellingProducts } from '../components/dashboard/TopSellingProducts'
-import { RecentTransactions } from '../components/dashboard/RecentTransactions'
-import { RecentActivity } from '../components/dashboard/RecentActivity'
-import { IconPlus } from '../components/ui/icons'
-import { dashboardService } from '../services/dashboardService'
+import { PageHeader } from '../../components/ui/PageHeader'
+import { StatCard } from '../../components/ui/StatCard'
+import { ChartCard } from '../../components/ui/ChartCard'
+import { Button } from '../../components/ui/Button'
+import { SalesOverviewChart } from '../../components/dashboard/SalesOverviewChart'
+import { SalesByBranchChart } from '../../components/dashboard/SalesByBranchChart'
+import { TopSellingProducts } from '../../components/dashboard/TopSellingProducts'
+import { RecentTransactions } from '../../components/dashboard/RecentTransactions'
+import { RecentActivity } from '../../components/dashboard/RecentActivity'
+import { IconPlus } from '../../components/ui/icons'
+import { dashboardService } from '../../services/dashboardService'
 import {
   statCards as fallbackStats,
   salesOverviewByPeriod,
@@ -19,7 +19,7 @@ import {
   recentActivity as fallbackActivity,
   type PeriodFilter,
   type StatDatum,
-} from '../data/dashboardData'
+} from '../../data/dashboardData'
 
 export function DashboardPage() {
   const [stats, setStats] = useState<StatDatum[]>(fallbackStats)

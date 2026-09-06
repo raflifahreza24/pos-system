@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { Pagination } from '../components/ui/Pagination'
-import { ReturnsToolbar } from '../components/returns/ReturnsToolbar'
-import { ReturnsTable } from '../components/returns/ReturnsTable'
-import { usePagination } from '../hooks/usePagination'
-import { matchesDateRange, type DateRangeFilter } from '../utils/dateRangeFilter'
-import { returns } from '../data/returnsData'
-import { branches } from '../data/transactionsData'
-import type { Status } from '../components/ui/StatusBadge'
+import { PageHeader } from '../../components/ui/PageHeader'
+import { Pagination } from '../../components/ui/Pagination'
+import { ReturnsToolbar } from '../../components/returns/ReturnsToolbar'
+import { ReturnsTable } from '../../components/returns/ReturnsTable'
+import { usePagination } from '../../hooks/usePagination'
+import { matchesDateRange, type DateRangeFilter } from '../../utils/dateRangeFilter'
+import { returns } from '../../data/returnsData'
+import { branches } from '../../data/transactionsData'
+import type { Status } from '../../components/ui/StatusBadge'
 
 const PAGE_SIZE = 10
 
@@ -32,8 +32,9 @@ export function ReturnsPage() {
     pagination.setPage(1)
   }, [dateRange, branch, status])
 
-  // TODO: open the new-return form once it exists.
-  function handleNewReturn() {}
+  function handleNewReturn() {
+    window.location.hash = '#/returns-refunds/create'
+  }
 
   return (
     <div className="mx-auto flex max-w-[1400px] flex-col gap-5">

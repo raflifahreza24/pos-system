@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { Pagination } from '../components/ui/Pagination'
-import { CustomersToolbar } from '../components/customers/CustomersToolbar'
-import { CustomersTable } from '../components/customers/CustomersTable'
-import { usePagination } from '../hooks/usePagination'
-import { customers, type Customer } from '../data/customersData'
+import { PageHeader } from '../../components/ui/PageHeader'
+import { Pagination } from '../../components/ui/Pagination'
+import { SearchToolbar } from '../../components/ui/SearchToolbar'
+import { CustomersTable } from '../../components/customers/CustomersTable'
+import { IconPlus } from '../../components/ui/icons'
+import { usePagination } from '../../hooks/usePagination'
+import { customers, type Customer } from '../../data/customersData'
 
 const PAGE_SIZE = 10
 
@@ -28,8 +29,11 @@ export function CustomersPage() {
     pagination.setPage(1)
   }, [search])
 
-  // TODO: wire these up once the customer create/detail screens exist.
-  function handleAddCustomer() {}
+  function handleAddCustomer() {
+    window.location.hash = '#/customers/create'
+  }
+
+  // TODO: wire these up once the customer detail/edit screens exist.
   function handleView(_customer: Customer) {}
   function handleEdit(_customer: Customer) {}
 
@@ -37,7 +41,14 @@ export function CustomersPage() {
     <div className="mx-auto flex max-w-[1400px] flex-col gap-5">
       <PageHeader title="Customers" subtitle="Manage your customer directory and loyalty points." />
 
-      <CustomersToolbar search={search} onSearchChange={setSearch} onAddCustomer={handleAddCustomer} />
+      <SearchToolbar
+        search={search}
+        onSearchChange={setSearch}
+        placeholder="Search customer..."
+        actionLabel="Add Customer"
+        actionIcon={<IconPlus size={16} />}
+        onAction={handleAddCustomer}
+      />
 
       <CustomersTable
         rows={pagination.pageItems}

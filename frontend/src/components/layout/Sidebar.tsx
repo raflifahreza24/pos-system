@@ -1,4 +1,4 @@
-import { navItems } from '../../data/navigation'
+import { navItems, isNavItemActive } from '../../data/navigation'
 import { useSidebar } from '../../hooks/useSidebar'
 import { useHashRoute } from '../../hooks/useHashRoute'
 import { SidebarItem } from './SidebarItem'
@@ -43,12 +43,12 @@ export function Sidebar() {
           </button>
         </div>
 
-        <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-2">
+        <nav className="flex-1 space-y-1 overflow-y-auto scrollbar-hide px-3 py-2">
           {navItems.map((item) => (
             <SidebarItem
               key={item.key}
               item={item}
-              active={currentPath === item.href.slice(1)}
+              active={isNavItemActive(item.href, currentPath)}
               collapsed={collapsed}
               onNavigate={closeMobile}
             />
