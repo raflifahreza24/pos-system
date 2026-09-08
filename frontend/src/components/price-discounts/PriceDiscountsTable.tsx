@@ -62,7 +62,7 @@ export function PriceDiscountsTable({ rows, startIndex, onView, onEdit }: PriceD
                       type="button"
                       onClick={() => onView(entry)}
                       aria-label={`View ${entry.productName}`}
-                      className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
+                      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
                     >
                       <IconEye size={16} />
                     </button>
@@ -70,7 +70,7 @@ export function PriceDiscountsTable({ rows, startIndex, onView, onEdit }: PriceD
                       type="button"
                       onClick={() => onEdit(entry)}
                       aria-label={`Edit ${entry.productName}`}
-                      className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
+                      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
                     >
                       <IconEdit size={16} />
                     </button>
@@ -101,7 +101,7 @@ export function PriceDiscountsTable({ rows, startIndex, onView, onEdit }: PriceD
                   type="button"
                   onClick={() => onView(entry)}
                   aria-label={`View ${entry.productName}`}
-                  className="flex h-7 w-7 items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
+                  className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
                 >
                   <IconEye size={14} />
                 </button>
@@ -109,7 +109,7 @@ export function PriceDiscountsTable({ rows, startIndex, onView, onEdit }: PriceD
                   type="button"
                   onClick={() => onEdit(entry)}
                   aria-label={`Edit ${entry.productName}`}
-                  className="flex h-7 w-7 items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
+                  className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
                 >
                   <IconEdit size={14} />
                 </button>

@@ -13,6 +13,7 @@ export type DiscountValueKind = 'percentage' | 'fixed'
 
 export interface PriceDiscountEntry {
   id: string
+  productId: string
   productName: string
   type: PriceDiscountType
   value: number
@@ -35,6 +36,7 @@ function generateEntries(count: number): PriceDiscountEntry[] {
     if (index % 2 === 0) {
       return {
         id,
+        productId: product.id,
         productName: product.name,
         type: 'Price',
         value: product.price,
@@ -48,6 +50,7 @@ function generateEntries(count: number): PriceDiscountEntry[] {
 
     return {
       id,
+      productId: product.id,
       productName: product.name,
       type: 'Discount',
       value: isPercentage ? 5 + ((index * 3) % 20) : 2000 + ((index * 750) % 8000),

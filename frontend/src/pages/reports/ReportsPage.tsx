@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { ChartCard } from '../components/ui/ChartCard'
-import { BarChart } from '../components/ui/BarChart'
-import { PanelList } from '../components/ui/PanelList'
-import { ReportsToolbar, type ReportDateRange } from '../components/reports/ReportsToolbar'
-import { ReportTable } from '../components/reports/ReportTable'
-import { reportTypes, reportDefinitions } from '../data/reportsData'
-import { branches } from '../data/transactionsData'
+import { PageHeader } from '../../components/ui/PageHeader'
+import { ChartCard } from '../../components/ui/ChartCard'
+import { BarChart } from '../../components/ui/BarChart'
+import { PanelList } from '../../components/ui/PanelList'
+import { ReportsToolbar, type ReportDateRange } from '../../components/reports/ReportsToolbar'
+import { ReportTable } from '../../components/reports/ReportTable'
+import { reportTypes, reportDefinitions } from '../../data/reportsData'
+import { branches } from '../../data/transactionsData'
 
 export function ReportsPage() {
   const [activeReportId, setActiveReportId] = useState(reportTypes[0].id)

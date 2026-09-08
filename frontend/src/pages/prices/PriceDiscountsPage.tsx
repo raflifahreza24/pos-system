@@ -33,9 +33,15 @@ export function PriceDiscountsPage() {
     window.location.hash = '#/price-discounts/create'
   }
 
-  // TODO: wire these up once the price/discount detail screens exist.
-  function handleView(_entry: PriceDiscountEntry) {}
-  function handleEdit(_entry: PriceDiscountEntry) {}
+  function handleView(entry: PriceDiscountEntry) {
+    const basePath = entry.type === 'Price' ? 'prices' : 'discounts'
+    window.location.hash = `#/price-discounts/${basePath}/${entry.id}`
+  }
+
+  function handleEdit(entry: PriceDiscountEntry) {
+    const basePath = entry.type === 'Price' ? 'prices' : 'discounts'
+    window.location.hash = `#/price-discounts/${basePath}/${entry.id}/edit`
+  }
 
   return (
     <div className="mx-auto flex max-w-[1400px] flex-col gap-5">

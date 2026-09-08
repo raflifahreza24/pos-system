@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { Pagination } from '../components/ui/Pagination'
-import { StockMovementsToolbar } from '../components/stock-movements/StockMovementsToolbar'
-import { StockMovementsTable } from '../components/stock-movements/StockMovementsTable'
-import { usePagination } from '../hooks/usePagination'
-import { matchesDateRange, type DateRangeFilter } from '../utils/dateRangeFilter'
-import { stockMovements, stockMovementTypes, type StockMovementType } from '../data/stockMovementsData'
-import { branches } from '../data/transactionsData'
+import { PageHeader } from '../../components/ui/PageHeader'
+import { Pagination } from '../../components/ui/Pagination'
+import { StockMovementsToolbar } from '../../components/stock-movements/StockMovementsToolbar'
+import { StockMovementsTable } from '../../components/stock-movements/StockMovementsTable'
+import { usePagination } from '../../hooks/usePagination'
+import { matchesDateRange, type DateRangeFilter } from '../../utils/dateRangeFilter'
+import { stockMovements, stockMovementTypes, type StockMovementType } from '../../data/stockMovementsData'
+import { branches } from '../../data/transactionsData'
 
 const PAGE_SIZE = 10
 

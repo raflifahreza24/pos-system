@@ -14,6 +14,16 @@
       rel="stylesheet"
     />
 
+    <!--
+      Login/Forgot Password/Reset Password entrance-animation keyframes.
+      Loaded here (not injected from a component via useEffect) so the
+      rules exist before React's first paint — otherwise elements would
+      render in their final, unanimated state for a frame and then jump
+      into their animation once a dynamically-added stylesheet finished
+      loading.
+    -->
+    <link rel="stylesheet" href="/assets/css/login-animations.css" />
+
     <script>
       (function () {
         try {

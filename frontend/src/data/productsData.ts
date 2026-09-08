@@ -59,6 +59,22 @@ export function getProductSku(productId: string): string {
   return productId.replace('PRD', 'SKU')
 }
 
+// Same idea as getProductSku, for the barcode shown on Price Detail: no
+// real field for it yet, so a deterministic 13-digit value is derived
+// from the product id instead of every caller making up its own.
+export function getProductBarcode(productId: string): string {
+  const index = Number(productId.replace(/\D/g, '')) || 0
+  const digits = String(1_000_000_000 + index * 137).slice(0, 10)
+  return `899${digits}`
+}
+
 // Options for the Add Product form.
-export const productUnits = ['pcs', 'box', 'kg', 'liter', 'pack']
+export const productUnits = ['pcs', 'box', 'kg', 'liter', 'pack', 'cup']
 export const taxOptions = ['No Tax', 'PPN 11%']
+
+// A product's selling unit isn't stored on the record either — derived
+// deterministically from productUnits the same way SKU and barcode are.
+export function getProductUnit(productId: string): string {
+  const index = Number(productId.replace(/\D/g, '')) || 0
+  return productUnits[index % productUnits.length]
+}

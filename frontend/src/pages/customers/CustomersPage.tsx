@@ -3,14 +3,18 @@ import { PageHeader } from '../../components/ui/PageHeader'
 import { Pagination } from '../../components/ui/Pagination'
 import { SearchToolbar } from '../../components/ui/SearchToolbar'
 import { CustomersTable } from '../../components/customers/CustomersTable'
+import { ConfirmDialog } from '../../components/ui/ConfirmDialog'
 import { IconPlus } from '../../components/ui/icons'
 import { usePagination } from '../../hooks/usePagination'
+import { useToast } from '../../hooks/useToast'
 import { customers, type Customer } from '../../data/customersData'
 
 const PAGE_SIZE = 10
 
 export function CustomersPage() {
   const [search, setSearch] = useState('')
+  const [customerPendingDelete, setCustomerPendingDelete] = useState<Customer | null>(null)
+  const { showSuccess } = useToast()
 
   const filteredCustomers = useMemo(() => {
     const query = search.trim().toLowerCase()
@@ -33,9 +37,25 @@ export function CustomersPage() {
     window.location.hash = '#/customers/create'
   }
 
-  // TODO: wire these up once the customer detail/edit screens exist.
-  function handleView(_customer: Customer) {}
-  function handleEdit(_customer: Customer) {}
+  function handleView(customer: Customer) {
+    window.location.hash = `#/customers/${customer.id}`
+  }
+
+  function handleEdit(customer: Customer) {
+    window.location.hash = `#/customers/${customer.id}/edit`
+  }
+
+  function handleDelete(customer: Customer) {
+    setCustomerPendingDelete(customer)
+  }
+
+  // TODO: call the delete-customer endpoint once it exists.
+  function handleConfirmDelete() {
+    if (customerPendingDelete) {
+      showSuccess('Customer deleted', `"${customerPendingDelete.name}" has been removed.`)
+    }
+    setCustomerPendingDelete(null)
+  }
 
   return (
     <div className="mx-auto flex max-w-[1400px] flex-col gap-5">
@@ -55,6 +75,21 @@ export function CustomersPage() {
         startIndex={pagination.rangeStart}
         onView={handleView}
         onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+
+      <ConfirmDialog
+        open={customerPendingDelete !== null}
+        title="Delete this customer?"
+        description={
+          customerPendingDelete
+            ? `"${customerPendingDelete.name}" (${customerPendingDelete.id}) will be permanently removed. This action cannot be undone.`
+            : undefined
+        }
+        confirmLabel="Delete"
+        variant="danger"
+        onConfirm={handleConfirmDelete}
+        onCancel={() => setCustomerPendingDelete(null)}
       />
 
       <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">

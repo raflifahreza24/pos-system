@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { Pagination } from '../components/ui/Pagination'
-import { LowStockToolbar } from '../components/low-stock/LowStockToolbar'
-import { LowStockTable } from '../components/low-stock/LowStockTable'
-import { usePagination } from '../hooks/usePagination'
-import { lowStockItems } from '../data/inventoryData'
-import { branches } from '../data/transactionsData'
-import { categoryNames } from '../data/categoriesData'
+import { PageHeader } from '../../components/ui/PageHeader'
+import { Pagination } from '../../components/ui/Pagination'
+import { LowStockToolbar } from '../../components/low-stock/LowStockToolbar'
+import { LowStockTable } from '../../components/low-stock/LowStockTable'
+import { usePagination } from '../../hooks/usePagination'
+import { lowStockItems } from '../../data/inventoryData'
+import { branches } from '../../data/transactionsData'
+import { categoryNames } from '../../data/categoriesData'
 
 const PAGE_SIZE = 10
 

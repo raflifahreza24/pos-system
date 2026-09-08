@@ -42,3 +42,17 @@ export function formatDateNumeric(isoDate: string): string {
   const [year, month, day] = isoDate.split('-')
   return `${day}/${month}/${year}`
 }
+
+// "01 Sep 2026 08:15" — formatDate's day/short-month/year plus a
+// colon-separated time, for panels (e.g. Price Detail's System
+// Information / Price History) that need both in one readable string.
+export function formatDateTimeLong(value: string | Date): string {
+  const date = typeof value === 'string' ? new Date(value) : value
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  return `${formatDate(date)} ${hours}:${minutes}`
+}
+
+export function capitalize(value: string): string {
+  return value.charAt(0).toUpperCase() + value.slice(1)
+}

@@ -1,0 +1,75 @@
+/*
+ * Entrance animations for the auth screens (Login, Forgot Password,
+ * Reset Password) only. Kept out of the Tailwind build and out of
+ * src/index.css on purpose — it's loaded via a plain <link> in
+ * index.html's <head>, so the rules are available before React's first
+ * paint (a stylesheet injected later, e.g. from a useEffect, would let
+ * elements render unanimated for a frame and then jump into motion once
+ * it finished loading).
+ *
+ * These use the `animation` property, not `transition` — the app has a
+ * global unlayered `* { transition-property: ... }` rule in index.css
+ * that silently drops opacity/transform from *transition*-based effects,
+ * but that rule has no effect on keyframe `animation`s, so no inline-style
+ * workaround is needed here.
+ */
+
+@keyframes auth-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes auth-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes auth-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.auth-fade-up,
+.auth-fade-in,
+.auth-scale-in {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+.auth-fade-up {
+  animation-name: auth-fade-up;
+}
+
+.auth-fade-in {
+  animation-name: auth-fade-in;
+}
+
+.auth-scale-in {
+  animation-name: auth-scale-in;
+  animation-duration: 0.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-fade-up,
+  .auth-fade-in,
+  .auth-scale-in {
+    animation: none;
+  }
+}

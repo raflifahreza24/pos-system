@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import { PageHeader } from '../components/ui/PageHeader'
-import { PanelList } from '../components/ui/PanelList'
-import { GeneralSettings, type GeneralSettingsValue } from '../components/settings/GeneralSettings'
-import { TaxSettings, type TaxSettingsValue } from '../components/settings/TaxSettings'
-import { PaymentMethodsSettings } from '../components/settings/PaymentMethodsSettings'
-import { DocumentNumberSettings, type DocumentPrefixes } from '../components/settings/DocumentNumberSettings'
-import { NotificationSettings, type NotificationPreferences } from '../components/settings/NotificationSettings'
-import { OtherSettings, type OtherSettingsValue } from '../components/settings/OtherSettings'
-import { paymentMethods, type PaymentMethod } from '../data/transactionsData'
+import { PageHeader } from '../../components/ui/PageHeader'
+import { PanelList } from '../../components/ui/PanelList'
+import { GeneralSettings, type GeneralSettingsValue } from '../../components/settings/GeneralSettings'
+import { TaxSettings, type TaxSettingsValue } from '../../components/settings/TaxSettings'
+import { PaymentMethodsSettings } from '../../components/settings/PaymentMethodsSettings'
+import { DocumentNumberSettings, type DocumentPrefixes } from '../../components/settings/DocumentNumberSettings'
+import { NotificationSettings, type NotificationPreferences } from '../../components/settings/NotificationSettings'
+import { OtherSettings, type OtherSettingsValue } from '../../components/settings/OtherSettings'
+import { paymentMethods, type PaymentMethod } from '../../data/transactionsData'
 
 const SECTIONS = [
   { id: 'general', label: 'General' },

@@ -1,5 +1,5 @@
 import type { Customer } from '../../data/customersData'
-import { IconEdit, IconEye } from '../ui/icons'
+import { IconEdit, IconEye, IconTrash } from '../ui/icons'
 import { formatNumber } from '../../utils/formatters'
 
 interface CustomersTableProps {
@@ -7,9 +7,10 @@ interface CustomersTableProps {
   startIndex: number
   onView: (customer: Customer) => void
   onEdit: (customer: Customer) => void
+  onDelete: (customer: Customer) => void
 }
 
-export function CustomersTable({ rows, startIndex, onView, onEdit }: CustomersTableProps) {
+export function CustomersTable({ rows, startIndex, onView, onEdit, onDelete }: CustomersTableProps) {
   if (rows.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-line py-16 text-center text-sm text-ink-muted">
@@ -49,7 +50,7 @@ export function CustomersTable({ rows, startIndex, onView, onEdit }: CustomersTa
                       type="button"
                       onClick={() => onView(customer)}
                       aria-label={`View ${customer.name}`}
-                      className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
+                      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
                     >
                       <IconEye size={16} />
                     </button>
@@ -57,9 +58,17 @@ export function CustomersTable({ rows, startIndex, onView, onEdit }: CustomersTa
                       type="button"
                       onClick={() => onEdit(customer)}
                       aria-label={`Edit ${customer.name}`}
-                      className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
+                      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-primary"
                     >
                       <IconEdit size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onDelete(customer)}
+                      aria-label={`Delete ${customer.name}`}
+                      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg text-ink-muted transition-colors duration-150 hover:bg-canvas hover:text-danger-strong"
+                    >
+                      <IconTrash size={16} />
                     </button>
                   </div>
                 </td>
@@ -86,16 +95,23 @@ export function CustomersTable({ rows, startIndex, onView, onEdit }: CustomersTa
               <button
                 type="button"
                 onClick={() => onView(customer)}
-                className="flex h-8 flex-1 items-center justify-center gap-1.5 rounded-lg border border-line text-xs font-medium text-ink transition-colors duration-150 hover:bg-canvas"
+                className="flex h-8 flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-line text-xs font-medium text-ink transition-colors duration-150 hover:border-primary/40 hover:text-primary"
               >
                 <IconEye size={14} /> View
               </button>
               <button
                 type="button"
                 onClick={() => onEdit(customer)}
-                className="flex h-8 flex-1 items-center justify-center gap-1.5 rounded-lg border border-line text-xs font-medium text-ink transition-colors duration-150 hover:bg-canvas"
+                className="flex h-8 flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-line text-xs font-medium text-ink transition-colors duration-150 hover:border-primary/40 hover:text-primary"
               >
                 <IconEdit size={14} /> Edit
+              </button>
+              <button
+                type="button"
+                onClick={() => onDelete(customer)}
+                className="flex h-8 flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-line text-xs font-medium text-ink transition-colors duration-150 hover:border-danger-strong/40 hover:text-danger-strong"
+              >
+                <IconTrash size={14} /> Delete
               </button>
             </div>
           </li>

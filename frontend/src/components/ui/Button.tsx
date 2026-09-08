@@ -2,8 +2,9 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { cn } from '../../utils/formatters'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger'
   icon?: ReactNode
+  trailingIcon?: ReactNode
   fullWidthOnMobile?: boolean
 }
 
@@ -13,11 +14,14 @@ const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
   secondary:
     'bg-surface text-ink border border-line hover:border-primary/40 hover:bg-canvas focus-visible:ring-primary/30',
   ghost: 'text-ink-muted hover:bg-canvas hover:text-ink focus-visible:ring-primary/30',
+  // For a destructive confirmation (e.g. the delete confirm dialog).
+  danger: 'bg-danger-strong text-white shadow-sm hover:bg-danger-strong/90 hover:shadow-md focus-visible:ring-danger-strong/40',
 }
 
 export function Button({
   variant = 'primary',
   icon,
+  trailingIcon,
   fullWidthOnMobile,
   className,
   children,
@@ -36,6 +40,7 @@ export function Button({
     >
       {icon}
       {children}
+      {trailingIcon}
     </button>
   )
 }

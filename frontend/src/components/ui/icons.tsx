@@ -528,3 +528,88 @@ export function IconMapPin(props: IconProps) {
     </Svg>
   )
 }
+
+export function IconGift(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="3.5" y="9" width="17" height="4" rx="1" />
+      <rect x="4.5" y="13" width="15" height="7" rx="1" />
+      <path d="M12 9v11" />
+      <path d="M12 9C9.5 9 8 7.6 8 6a2.2 2.2 0 0 1 4 0c0 1.6-1.5 3-4 3ZM12 9c2.5 0 4-1.4 4-3a2.2 2.2 0 0 0-4 0c0 1.6 1.5 3 4 3Z" />
+    </Svg>
+  )
+}
+
+export function IconTag(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M20 12.6 12.9 19.7a1.7 1.7 0 0 1-2.4 0L4.3 13.5a1.7 1.7 0 0 1 0-2.4L11.4 4H18a2 2 0 0 1 2 2v6.6Z" />
+      <circle cx="15.2" cy="8.8" r="1.4" />
+    </Svg>
+  )
+}
+
+export function IconFileText(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M7 3.5h7l4 4v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-15a1 1 0 0 1 1-1Z" />
+      <path d="M14 3.5V8h4.5" />
+      <path d="M8.5 12.5h7M8.5 15.5h7M8.5 18.5h4" />
+    </Svg>
+  )
+}
+
+export function IconMail(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+      <path d="M4.2 7 12 13l7.8-6" />
+    </Svg>
+  )
+}
+
+export function IconLock(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="5" y="10.5" width="14" height="9.5" rx="2" />
+      <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
+      <path d="M12 14.3v2.4" />
+    </Svg>
+  )
+}
+
+export function IconShoppingCart(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M3.5 4.5h2l2.2 11.2A1.8 1.8 0 0 0 9.4 17h7.5a1.8 1.8 0 0 0 1.76-1.42L20 8.5H6.2" />
+      <circle cx="10" cy="20" r="1.3" />
+      <circle cx="17" cy="20" r="1.3" />
+    </Svg>
+  )
+}
+
+export function IconArrowRight(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M4.5 12h15M13.5 6l6 6-6 6" />
+    </Svg>
+  )
+}
+
+export function IconCheckCircle(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M8.5 12.3l2.3 2.3 4.7-4.9" />
+    </Svg>
+  )
+}
+
+export function IconXCircle(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M9.3 9.3l5.4 5.4M14.7 9.3l-5.4 5.4" />
+    </Svg>
+  )
+}
