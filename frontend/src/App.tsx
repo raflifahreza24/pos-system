@@ -44,6 +44,8 @@ import { ReportsPage } from './pages/reports/ReportsPage'
 import { BranchesPage } from './pages/branches/BranchesPage'
 import { BranchCreatePage } from './pages/branches/BranchCreatePage'
 import { SettingsPage } from './pages/settings/SettingsPage'
+import { ProfilePage } from './pages/profile/ProfilePage'
+import { PreferencesPage } from './pages/preferences/PreferencesPage'
 import { LoginPage } from './pages/auth/LoginPage'
 import { ResetPasswordPage } from './pages/auth/ResetPasswordPage'
 import { ComingSoonPage } from './pages/ComingSoonPage'
@@ -159,6 +161,10 @@ function AppRoutes() {
       return <BranchCreatePage />
     case '/settings':
       return <SettingsPage />
+    case '/profile':
+      return <ProfilePage />
+    case '/preferences':
+      return <PreferencesPage />
     default: {
       const title = navItems.find((item) => item.href === `#${path}`)?.label ?? 'Page'
       return <ComingSoonPage title={title} />

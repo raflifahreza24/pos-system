@@ -613,3 +613,79 @@ export function IconXCircle(props: IconProps) {
     </Svg>
   )
 }
+
+export function IconCamera(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M4 8.5a1.5 1.5 0 0 1 1.5-1.5h2l1.1-1.8a1.5 1.5 0 0 1 1.28-.7h4.24a1.5 1.5 0 0 1 1.28.7L16.5 7h2A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5v-9Z" />
+      <circle cx="12" cy="13" r="3.5" />
+    </Svg>
+  )
+}
+
+export function IconCalendar(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="4" y="5.5" width="16" height="14.5" rx="2" />
+      <path d="M4 10h16M8 3.5v3M16 3.5v3" />
+    </Svg>
+  )
+}
+
+export function IconKey(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="7.5" cy="15.5" r="3.25" />
+      <path d="M9.8 13.2 18 5" />
+      <path d="M15.2 7.8 17.4 10" />
+      <path d="M17.6 5.6 19.6 7.6" />
+    </Svg>
+  )
+}
+
+export function IconLogIn(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M14.5 4H18a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3.5" />
+      <path d="M9.5 15.5 5 12l4.5-3.5M5 12h9.5" />
+    </Svg>
+  )
+}
+
+export function IconSave(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M5.5 4h10l3 3v13H5.5a1.5 1.5 0 0 1-1.5-1.5v-13A1.5 1.5 0 0 1 5.5 4Z" />
+      <path d="M8 4v5h7V4" />
+      <path d="M8 20v-6h8v6" />
+    </Svg>
+  )
+}
+
+export function IconGlobe(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M3.5 12h17M12 3.5c2.3 2.3 3.5 5.2 3.5 8.5s-1.2 6.2-3.5 8.5c-2.3-2.3-3.5-5.2-3.5-8.5S9.7 5.8 12 3.5Z" />
+    </Svg>
+  )
+}
+
+export function IconMonitor(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="3.5" y="4.5" width="17" height="12" rx="1.5" />
+      <path d="M9 20h6M12 16.5V20" />
+    </Svg>
+  )
+}
+
+export function IconContrast(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" fill="currentColor" stroke="none" />
+    </Svg>
+  )
+}
+

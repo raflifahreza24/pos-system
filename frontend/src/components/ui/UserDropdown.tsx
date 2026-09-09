@@ -39,7 +39,11 @@ export function UserDropdown() {
           <button
             type="button"
             role="menuitem"
-            className="flex w-full items-center gap-2.5 px-3.5 py-2 text-left text-sm text-ink transition-colors duration-150 hover:bg-canvas"
+            onClick={() => {
+              setOpen(false)
+              window.location.hash = '#/profile'
+            }}
+            className="flex w-full cursor-pointer items-center gap-2.5 px-3.5 py-2 text-left text-sm text-ink transition-colors duration-150 hover:bg-canvas"
           >
             <IconUser size={16} className="text-ink-muted" />
             My Profile
@@ -47,16 +51,20 @@ export function UserDropdown() {
           <button
             type="button"
             role="menuitem"
-            className="flex w-full items-center gap-2.5 px-3.5 py-2 text-left text-sm text-ink transition-colors duration-150 hover:bg-canvas"
+            onClick={() => {
+              setOpen(false)
+              window.location.hash = '#/preferences'
+            }}
+            className="flex w-full cursor-pointer items-center gap-2.5 px-3.5 py-2 text-left text-sm text-ink transition-colors duration-150 hover:bg-canvas"
           >
             <IconSettings size={16} className="text-ink-muted" />
-            Settings
+            Preferences
           </button>
           <div className="my-1 border-t border-line" />
           <button
             type="button"
             role="menuitem"
-            className="flex w-full items-center gap-2.5 px-3.5 py-2 text-left text-sm text-danger-strong transition-colors duration-150 hover:bg-danger-light"
+            className="flex w-full cursor-pointer items-center gap-2.5 px-3.5 py-2 text-left text-sm text-danger-strong transition-colors duration-150 hover:bg-danger-light"
           >
             <IconLogOut size={16} />
             Log Out

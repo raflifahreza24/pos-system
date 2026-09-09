@@ -51,6 +51,15 @@ export function isNavItemActive(href: string, currentPath: string): boolean {
   return resolvedPath === itemPath || resolvedPath.startsWith(`${itemPath}/`)
 }
 
+// Pages reachable only from the user dropdown (UserDropdown.tsx), not from
+// the sidebar — so they have no navItems entry for Topbar's breadcrumb to
+// match against. Kept separate from navItems itself so Sidebar (which
+// renders navItems directly) doesn't grow extra links for them.
+export const EXTRA_PAGE_TITLES: Record<string, string> = {
+  '/profile': 'Profile',
+  '/preferences': 'Preferences',
+}
+
 export const navItems: NavItem[] = [
   { key: 'dashboard', label: 'Dashboard', icon: 'dashboard', href: '#/dashboard' },
   { key: 'pos', label: 'Point of Sale', icon: 'pos', href: '#/point-of-sale' },

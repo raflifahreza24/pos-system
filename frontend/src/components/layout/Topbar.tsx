@@ -3,12 +3,13 @@ import { useHashRoute } from '../../hooks/useHashRoute'
 import { ThemeToggle } from '../ui/ThemeToggle'
 import { UserDropdown } from '../ui/UserDropdown'
 import { IconBell, IconMenu, IconSearch } from '../ui/icons'
-import { navItems, isNavItemActive } from '../../data/navigation'
+import { navItems, isNavItemActive, EXTRA_PAGE_TITLES } from '../../data/navigation'
 
 export function Topbar() {
   const { openMobile } = useSidebar()
   const currentPath = useHashRoute()
-  const pageTitle = navItems.find((item) => isNavItemActive(item.href, currentPath))?.label ?? 'Dashboard'
+  const pageTitle =
+    navItems.find((item) => isNavItemActive(item.href, currentPath))?.label ?? EXTRA_PAGE_TITLES[currentPath] ?? 'Dashboard'
 
   return (
     <header className="sticky top-0 z-20 flex h-16 shrink-0 items-center gap-3 border-b border-line bg-topbar px-4 transition-colors duration-300 sm:px-6">
