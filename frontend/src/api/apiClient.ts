@@ -1,23 +1,43 @@
-// Thin fetch wrapper. Swap the implementation for axios once the backend
-// contract is ready — every service in `src/services` calls through here,
-// so that is the only file that needs to change.
-const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/api'
+import axios, { AxiosError } from 'axios'
+import { getToken } from './tokenStorage'
+import type { ApiErrorResponse } from '../types/auth'
 
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE_URL}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
-    ...init,
-  })
+export const apiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+})
 
-  if (!res.ok) {
-    throw new Error(`Request failed: ${res.status} ${res.statusText}`)
+apiClient.interceptors.request.use((config) => {
+  const token = getToken()
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
   }
 
-  return res.json() as Promise<T>
-}
+  return config
+})
 
-export const apiClient = {
-  get: <T>(path: string) => request<T>(path, { method: 'GET' }),
-  post: <T>(path: string, body?: unknown) =>
-    request<T>(path, { method: 'POST', body: body ? JSON.stringify(body) : undefined }),
+const FALLBACK_ERROR_MESSAGE = 'Something went wrong. Please try again.'
+
+export function getApiErrorMessage(
+  error: unknown,
+  fallback = FALLBACK_ERROR_MESSAGE,
+): string {
+  if (!(error instanceof AxiosError)) return fallback
+
+  const status = error.response?.status
+  const data = error.response?.data as ApiErrorResponse | undefined
+
+  // Never surface raw server exception details for server-side failures.
+  if (!status || status >= 500) return fallback
+
+  if (status === 422 && data?.errors) {
+    const firstValidationMessage = Object.values(data.errors).flat()[0]
+    if (firstValidationMessage) return firstValidationMessage
+  }
+
+  return data?.message || fallback
 }

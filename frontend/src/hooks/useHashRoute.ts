@@ -4,7 +4,12 @@ const DEFAULT_PATH = '/dashboard'
 
 function readPath(): string {
   const hash = window.location.hash.replace(/^#/, '')
-  return hash || DEFAULT_PATH
+  if (hash) return hash.split('?')[0] || DEFAULT_PATH
+
+  // Password reset emails point to a regular `/reset-password?...` URL.
+  // Keep supporting the app's existing hash links while allowing that
+  // direct entry path to reach the reset screen.
+  return window.location.pathname === '/' ? DEFAULT_PATH : window.location.pathname
 }
 
 /**
@@ -22,7 +27,11 @@ export function useHashRoute(): string {
       setPath(readPath())
     }
     window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
+    window.addEventListener('popstate', handleHashChange)
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange)
+      window.removeEventListener('popstate', handleHashChange)
+    }
   }, [])
 
   return path

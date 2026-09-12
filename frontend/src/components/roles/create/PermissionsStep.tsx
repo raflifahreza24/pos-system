@@ -1,8 +1,9 @@
 import { StepCard } from '../../ui/StepCard'
 import { PermissionModuleCard } from './PermissionModuleCard'
-import { permissionModules } from '../../../data/rolesPermissionsData'
+import type { PermissionModule } from '../../../data/rolesPermissionsData'
 
 interface PermissionsStepProps {
+  modules: PermissionModule[]
   checkedKeys: Set<string>
   onToggle: (key: string) => void
   onToggleAll: (checked: boolean) => void
@@ -10,11 +11,11 @@ interface PermissionsStepProps {
 
 // Wireframe splits the eight modules into two columns of four — left gets
 // Dashboard/POS/Transactions/Returns & Refunds, right gets the rest.
-const leftColumn = permissionModules.slice(0, 4)
-const rightColumn = permissionModules.slice(4)
-
-export function PermissionsStep({ checkedKeys, onToggle, onToggleAll }: PermissionsStepProps) {
-  const allActionKeys = permissionModules.flatMap((module) => module.actions.map((action) => action.key))
+export function PermissionsStep({ modules, checkedKeys, onToggle, onToggleAll }: PermissionsStepProps) {
+  const splitIndex = Math.ceil(modules.length / 2)
+  const leftColumn = modules.slice(0, splitIndex)
+  const rightColumn = modules.slice(splitIndex)
+  const allActionKeys = modules.flatMap((module) => module.actions.map((action) => action.key))
   const allChecked = allActionKeys.length > 0 && allActionKeys.every((key) => checkedKeys.has(key))
 
   return (

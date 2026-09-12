@@ -4,10 +4,22 @@ import { useHashRoute } from '../../hooks/useHashRoute'
 import { SidebarItem } from './SidebarItem'
 import { IconChevronLeft, IconChevronRight, IconClose, IconLogOut } from '../ui/icons'
 import { cn } from '../../utils/formatters'
+import { useAuth } from '../../hooks/useAuth'
+import { usePermission } from '../../hooks/usePermission'
 
 export function Sidebar() {
   const { collapsed, mobileOpen, toggleCollapsed, closeMobile } = useSidebar()
+  const { user, logout } = useAuth()
+  const { can } = usePermission()
   const currentPath = useHashRoute()
+  const visibleNavItems = navItems.filter((item) => !item.permission || can(item.permission))
+  const initials =
+    user?.name
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((part) => part.charAt(0))
+      .join('')
+      .toUpperCase() || 'U'
 
   return (
     <>
@@ -31,7 +43,7 @@ export function Sidebar() {
             POS
           </span>
           <span className={cn('text-sm font-semibold text-sidebar-ink-active', collapsed && 'lg:hidden')}>
-            Super Admin
+            {user?.role?.name ?? 'POS User'}
           </span>
           <button
             type="button"
@@ -44,7 +56,7 @@ export function Sidebar() {
         </div>
 
         <nav className="flex-1 space-y-1 overflow-y-auto scrollbar-hide px-3 py-2">
-          {navItems.map((item) => (
+          {visibleNavItems.map((item) => (
             <SidebarItem
               key={item.key}
               item={item}
@@ -58,15 +70,16 @@ export function Sidebar() {
         <div className={cn('space-y-2 border-t border-sidebar-line px-3 py-3', collapsed && 'lg:px-2.5')}>
           <div className={cn('flex items-center gap-2.5 rounded-xl px-2 py-1.5', collapsed && 'lg:justify-center lg:px-0')}>
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-light text-xs font-semibold text-primary">
-              SA
+              {initials}
             </span>
             <span className={cn('min-w-0 flex-1', collapsed && 'lg:hidden')}>
-              <span className="block truncate text-sm font-medium text-sidebar-ink-active">Super Admin</span>
-              <span className="block truncate text-xs text-sidebar-ink">admin@pos.app</span>
+              <span className="block truncate text-sm font-medium text-sidebar-ink-active">{user?.name}</span>
+              <span className="block truncate text-xs text-sidebar-ink">{user?.email}</span>
             </span>
           </div>
           <button
             type="button"
+            onClick={() => void logout()}
             className={cn(
               'flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-sidebar-ink transition-colors duration-150 hover:bg-sidebar-hover hover:text-sidebar-ink-active',
               collapsed && 'lg:justify-center lg:px-2.5',

@@ -5,6 +5,8 @@ import { Button } from '../../components/ui/Button'
 import { FormField } from '../../components/ui/FormField'
 import { Input } from '../../components/ui/Input'
 import { IconArrowRight, IconChevronLeft, IconLock, IconMail, IconShieldCheck } from '../../components/ui/icons'
+import { authApi } from '../../api/authApi'
+import { getApiErrorMessage } from '../../api/apiClient'
 
 type LoginView = 'login' | 'forgot-password'
 
@@ -53,19 +55,23 @@ export function LoginPage() {
 }
 
 function ForgotPasswordForm({ onBackToLogin }: { onBackToLogin: () => void }) {
-  const [emailOrUsername, setEmailOrUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (loading) return
+
+    setErrorMessage('')
+    setSuccessMessage('')
     setLoading(true)
     try {
-      // Dummy handler for now, same spirit as authService.login — swap
-      // for a real "/auth/forgot-password" request once that endpoint
-      // exists. No new file for just this one call yet; promote it
-      // alongside authService.ts if/when this screen needs more logic.
-      await new Promise((resolve) => setTimeout(resolve, 700))
-      // TODO: show a "check your email" confirmation once the real endpoint exists.
+      const message = await authApi.forgotPassword(email)
+      setSuccessMessage(message)
+    } catch (error) {
+      setErrorMessage(getApiErrorMessage(error, 'Unable to send the reset link. Please try again.'))
     } finally {
       setLoading(false)
     }
@@ -93,25 +99,37 @@ function ForgotPasswordForm({ onBackToLogin }: { onBackToLogin: () => void }) {
           </span>
           <h1 className="mt-2 text-2xl font-bold text-ink">Forgot Password?</h1>
           <p className="text-sm text-ink-muted">
-            No worries! Enter your email or username and we&apos;ll send you a link to reset your password.
+            No worries! Enter your email and we&apos;ll send you a link to reset your password.
           </p>
         </div>
 
         <form className="mt-8 flex flex-col gap-5" onSubmit={handleSubmit}>
           <div className="auth-fade-up" style={{ animationDelay: FORGOT_PASSWORD_DELAY.field }}>
-            <FormField label="Email or Username">
+            <FormField label="Email">
               <Input
-                type="text"
-                name="identifier"
+                type="email"
+                name="email"
                 autoComplete="username"
                 required
-                placeholder="Enter your email or username"
+                placeholder="Enter your email"
                 icon={<IconMail size={18} className="shrink-0 text-ink-muted" />}
-                value={emailOrUsername}
-                onChange={(event) => setEmailOrUsername(event.target.value)}
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
               />
             </FormField>
           </div>
+
+          {successMessage ? (
+            <p role="status" className="rounded-xl bg-success-light px-4 py-3 text-sm text-success-strong">
+              {successMessage}
+            </p>
+          ) : null}
+
+          {errorMessage ? (
+            <p role="alert" className="rounded-xl bg-danger-light px-4 py-3 text-sm text-danger-strong">
+              {errorMessage}
+            </p>
+          ) : null}
 
           <div className="auth-fade-up" style={{ animationDelay: FORGOT_PASSWORD_DELAY.submitButton }}>
             <Button

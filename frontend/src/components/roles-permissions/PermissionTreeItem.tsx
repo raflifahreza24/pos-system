@@ -9,6 +9,7 @@ interface PermissionTreeItemProps {
   checkedKeys: Set<string>
   onToggle: (key: string) => void
   defaultExpanded?: boolean
+  disabled?: boolean
 }
 
 /**
@@ -23,6 +24,7 @@ export function PermissionTreeItem({
   checkedKeys,
   onToggle,
   defaultExpanded = false,
+  disabled = false,
 }: PermissionTreeItemProps) {
   const [expanded, setExpanded] = useState(defaultExpanded)
   const hasChildren = Boolean(node.children?.length)
@@ -31,13 +33,17 @@ export function PermissionTreeItem({
   if (!hasChildren) {
     return (
       <label
-        className="flex cursor-pointer items-center gap-2.5 py-2 pr-3 text-sm text-ink transition-colors duration-150 hover:bg-canvas"
+        className={cn(
+          'flex items-center gap-2.5 py-2 pr-3 text-sm text-ink transition-colors duration-150',
+          disabled ? 'cursor-default opacity-75' : 'cursor-pointer hover:bg-canvas',
+        )}
         style={{ paddingLeft }}
       >
         <input
           type="checkbox"
           checked={checkedKeys.has(node.key)}
           onChange={() => onToggle(node.key)}
+          disabled={disabled}
           className="h-4 w-4 shrink-0 rounded border-line text-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
         />
         <span>{node.label}</span>
@@ -70,6 +76,7 @@ export function PermissionTreeItem({
               depth={depth + 1}
               checkedKeys={checkedKeys}
               onToggle={onToggle}
+              disabled={disabled}
             />
           ))}
         </div>

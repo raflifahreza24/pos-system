@@ -4,7 +4,8 @@ import { PasswordField } from '../../components/auth/PasswordField'
 import { PasswordRequirementsList, isPasswordValid } from '../../components/auth/PasswordRequirementsList'
 import { Button } from '../../components/ui/Button'
 import { IconArrowRight, IconChevronLeft, IconLock } from '../../components/ui/icons'
-import { authService } from '../../services/authService'
+import { authApi } from '../../api/authApi'
+import { getApiErrorMessage } from '../../api/apiClient'
 
 // Staggered entrance timing, same pattern as LoginForm.tsx/LoginPage.tsx's
 // Forgot Password card (see public/assets/css/login-animations.css,
@@ -25,6 +26,17 @@ function goToLogin() {
   window.location.hash = '#/login'
 }
 
+function readResetParams() {
+  const hash = window.location.hash.replace(/^#/, '')
+  const hashQuery = hash.includes('?') ? hash.slice(hash.indexOf('?') + 1) : ''
+  const params = new URLSearchParams(hashQuery || window.location.search)
+
+  return {
+    token: params.get('token') ?? '',
+    email: params.get('email') ?? '',
+  }
+}
+
 /**
  * Full-screen Reset Password page — same AuthLayout shell as LoginPage
  * (hero panel + right-side card), only the form content differs. Reuses
@@ -32,22 +44,37 @@ function goToLogin() {
  * nothing in src/components already covered a password-strength checklist.
  */
 export function ResetPasswordPage() {
+  const [{ token, email }] = useState(readResetParams)
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
 
+  const hasValidLinkParams = token !== '' && email !== ''
   const passwordsMatch = confirmPassword !== '' && confirmPassword === newPassword
-  const canSubmit = isPasswordValid(newPassword) && passwordsMatch
+  const canSubmit = hasValidLinkParams && isPasswordValid(newPassword) && passwordsMatch
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    if (!canSubmit) return
+    if (!canSubmit || loading) return
+
+    setErrorMessage('')
+    setSuccessMessage('')
     setLoading(true)
     try {
-      await authService.resetPassword({ password: newPassword })
-      // TODO: redirect to /login with a success message once real auth exists.
+      const message = await authApi.resetPassword({
+        email,
+        token,
+        password: newPassword,
+        password_confirmation: confirmPassword,
+      })
+      setSuccessMessage(message)
+      window.setTimeout(goToLogin, 1500)
+    } catch (error) {
+      setErrorMessage(getApiErrorMessage(error, 'Unable to reset your password. Please try again.'))
     } finally {
       setLoading(false)
     }
@@ -81,6 +108,12 @@ export function ResetPasswordPage() {
           </div>
 
           <form className="mt-8 flex flex-col gap-5" onSubmit={handleSubmit}>
+            {!hasValidLinkParams ? (
+              <p role="alert" className="rounded-xl bg-danger-light px-4 py-3 text-sm text-danger-strong">
+                This password reset link is invalid or incomplete. Please request a new link.
+              </p>
+            ) : null}
+
             <div className="auth-fade-up" style={{ animationDelay: DELAY.newPasswordField }}>
               <PasswordField
                 label="New Password"
@@ -113,6 +146,18 @@ export function ResetPasswordPage() {
             <div className="auth-fade-up" style={{ animationDelay: DELAY.requirements }}>
               <PasswordRequirementsList password={newPassword} />
             </div>
+
+            {successMessage ? (
+              <p role="status" className="rounded-xl bg-success-light px-4 py-3 text-sm text-success-strong">
+                {successMessage} Redirecting to login...
+              </p>
+            ) : null}
+
+            {errorMessage ? (
+              <p role="alert" className="rounded-xl bg-danger-light px-4 py-3 text-sm text-danger-strong">
+                {errorMessage}
+              </p>
+            ) : null}
 
             <div className="auth-fade-up" style={{ animationDelay: DELAY.submitButton }}>
               <Button

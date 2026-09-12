@@ -6,9 +6,16 @@ interface PermissionTreeProps {
   checkedKeys: Set<string>
   onToggle: (key: string) => void
   defaultExpandedKeys?: string[]
+  disabled?: boolean
 }
 
-export function PermissionTree({ nodes, checkedKeys, onToggle, defaultExpandedKeys = [] }: PermissionTreeProps) {
+export function PermissionTree({
+  nodes,
+  checkedKeys,
+  onToggle,
+  defaultExpandedKeys = [],
+  disabled = false,
+}: PermissionTreeProps) {
   return (
     <div className="flex flex-col divide-y divide-line">
       {nodes.map((node) => (
@@ -19,6 +26,7 @@ export function PermissionTree({ nodes, checkedKeys, onToggle, defaultExpandedKe
           checkedKeys={checkedKeys}
           onToggle={onToggle}
           defaultExpanded={defaultExpandedKeys.includes(node.key)}
+          disabled={disabled}
         />
       ))}
     </div>

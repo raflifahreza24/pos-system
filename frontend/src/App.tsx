@@ -48,6 +48,9 @@ import { ProfilePage } from './pages/profile/ProfilePage'
 import { PreferencesPage } from './pages/preferences/PreferencesPage'
 import { LoginPage } from './pages/auth/LoginPage'
 import { ResetPasswordPage } from './pages/auth/ResetPasswordPage'
+import { AuthProvider } from './context/AuthContext'
+import { ProtectedRoute } from './components/auth/ProtectedRoute'
+import { GuestRoute } from './components/auth/GuestRoute'
 import { ComingSoonPage } from './pages/ComingSoonPage'
 import { useHashRoute } from './hooks/useHashRoute'
 import { navItems } from './data/navigation'
@@ -146,9 +149,17 @@ function AppRoutes() {
     case '/users-employees/create':
       return <UserCreatePage />
     case '/roles-permissions':
-      return <RolesPermissionsPage />
+      return (
+        <ProtectedRoute permission="roles.view">
+          <RolesPermissionsPage />
+        </ProtectedRoute>
+      )
     case '/roles-permissions/create':
-      return <RoleCreatePage />
+      return (
+        <ProtectedRoute permission="roles.create">
+          <RoleCreatePage />
+        </ProtectedRoute>
+      )
     case '/shifts':
       return <ShiftsPage />
     case '/open-shift':
@@ -156,7 +167,11 @@ function AppRoutes() {
     case '/reports':
       return <ReportsPage />
     case '/branches':
-      return <BranchesPage />
+      return (
+        <ProtectedRoute permission="branches.view">
+          <BranchesPage />
+        </ProtectedRoute>
+      )
     case '/branches/create':
       return <BranchCreatePage />
     case '/settings':
@@ -172,7 +187,7 @@ function AppRoutes() {
   }
 }
 
-function App() {
+function AppContent() {
   // /login and /reset-password are intercepted here, before MainLayout,
   // so they render full-screen with no sidebar/topbar — every other
   // route still goes through AppRoutes' switch below, unchanged.
@@ -180,22 +195,22 @@ function App() {
 
   if (path === '/login') {
     return (
-      <ThemeProvider>
+      <GuestRoute>
         <LoginPage />
-      </ThemeProvider>
+      </GuestRoute>
     )
   }
 
   if (path === '/reset-password') {
     return (
-      <ThemeProvider>
+      <GuestRoute>
         <ResetPasswordPage />
-      </ThemeProvider>
+      </GuestRoute>
     )
   }
 
   return (
-    <ThemeProvider>
+    <ProtectedRoute>
       <SidebarProvider>
         <ToastProvider>
           <MainLayout>
@@ -203,6 +218,16 @@ function App() {
           </MainLayout>
         </ToastProvider>
       </SidebarProvider>
+    </ProtectedRoute>
+  )
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
     </ThemeProvider>
   )
 }

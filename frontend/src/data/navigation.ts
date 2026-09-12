@@ -27,6 +27,7 @@ export interface NavItem {
   label: string
   icon: NavIconKey
   href: string
+  permission?: string
 }
 
 /**
@@ -78,9 +79,21 @@ export const navItems: NavItem[] = [
   { key: 'purchaseOrders', label: 'Purchase Orders', icon: 'purchaseOrders', href: '#/purchase-orders' },
   { key: 'goodsReceiving', label: 'Goods Receiving', icon: 'goodsReceiving', href: '#/goods-receiving' },
   { key: 'usersEmployees', label: 'Users / Employees', icon: 'usersEmployees', href: '#/users-employees' },
-  { key: 'rolesPermissions', label: 'Roles & Permissions', icon: 'rolesPermissions', href: '#/roles-permissions' },
+  {
+    key: 'rolesPermissions',
+    label: 'Roles & Permissions',
+    icon: 'rolesPermissions',
+    href: '#/roles-permissions',
+    permission: 'roles.view',
+  },
   { key: 'shifts', label: 'Shifts', icon: 'shifts', href: '#/shifts' },
   { key: 'reports', label: 'Reports', icon: 'reports', href: '#/reports' },
-  { key: 'branches', label: 'Branches', icon: 'branches', href: '#/branches' },
+  {
+    key: 'branches',
+    label: 'Branches',
+    icon: 'branches',
+    href: '#/branches',
+    permission: 'branches.view',
+  },
   { key: 'settings', label: 'Settings', icon: 'settings', href: '#/settings' },
 ]

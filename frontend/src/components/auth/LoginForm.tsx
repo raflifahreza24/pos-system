@@ -11,7 +11,8 @@ import {
   IconShieldCheck,
   IconStorefront,
 } from '../ui/icons'
-import { authService } from '../../services/authService'
+import { getApiErrorMessage } from '../../api/apiClient'
+import { useAuth } from '../../hooks/useAuth'
 
 // Staggered entrance timing, top to bottom — see
 // public/assets/css/login-animations.css (loaded via index.html) for what
@@ -33,22 +34,25 @@ interface LoginFormProps {
 }
 
 export function LoginForm({ onForgotPassword }: LoginFormProps) {
-  const [emailOrUsername, setEmailOrUsername] = useState('')
+  const { login } = useAuth()
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [rememberMe, setRememberMe] = useState(true)
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (loading) return
+
+    setErrorMessage('')
     setLoading(true)
     try {
-      // Dummy handler for now — authService.login already has the shape
-      // (credentials in, a session result out) a real /auth/login call
-      // will have, so only src/services/authService.ts needs to change
-      // once that endpoint exists.
-      await authService.login({ emailOrUsername, password, rememberMe })
-      // TODO: store the session and redirect to the dashboard once real auth exists.
+      await login({ email, password })
+      window.location.hash = '#/dashboard'
+    } catch (error) {
+      setErrorMessage(getApiErrorMessage(error, 'Unable to sign in. Please try again.'))
     } finally {
       setLoading(false)
     }
@@ -69,16 +73,16 @@ export function LoginForm({ onForgotPassword }: LoginFormProps) {
 
       <form className="mt-8 flex flex-col gap-5" onSubmit={handleSubmit}>
         <div className="auth-fade-up" style={{ animationDelay: DELAY.emailField }}>
-          <FormField label="Email or Username">
+          <FormField label="Email">
             <Input
-              type="text"
-              name="identifier"
+              type="email"
+              name="email"
               autoComplete="username"
               required
-              placeholder="Enter your email or username"
+              placeholder="Enter your email"
               icon={<IconMail size={18} className="shrink-0 text-ink-muted" />}
-              value={emailOrUsername}
-              onChange={(event) => setEmailOrUsername(event.target.value)}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </FormField>
         </div>
@@ -127,6 +131,12 @@ export function LoginForm({ onForgotPassword }: LoginFormProps) {
             Forgot password?
           </button>
         </div>
+
+        {errorMessage ? (
+          <p role="alert" className="rounded-xl bg-danger-light px-4 py-3 text-sm text-danger-strong">
+            {errorMessage}
+          </p>
+        ) : null}
 
         <div className="auth-fade-up" style={{ animationDelay: DELAY.submitButton }}>
           <Button
